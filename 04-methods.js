@@ -86,28 +86,27 @@ const server = http.createServer((req, res) => {
 // set port server
 server.listen(3000);
 
-
 /**
  *    PENTING !!!
- * 
+ *
  *  Banyak method HTTP yang tersedia, bisa dicek di Postman ya
  *  Nah kami akan menjelaskan beberapa method yang sering dipakai,
  *  Menyesuaikan dengan metode CRUD (Create, Read, Update, Delete),
  *  yaitu:
- * 
+ *
  *      1. GET
- *         Method untuk mendapatkan data saja (READ) 
+ *         Method untuk mendapatkan data saja (READ)
  *      2. POST
  *         Method untuk mengirim data ke server agar disimpan (CREATE)
  *      3. PUT
  *         Method untuk mengirim data ke server agar data yang telah ada diganti dengan data baru (UPDATE)
  *      4. DELETE
  *         Method untuk menghapus data yang ada di server (DELETE)
- * 
- *      
+ *
+ *
  *      Adanya perbedaan method ini agar kode memiliki makna yang sesuai (semantik),
  *      Kita juga bisa hanya gunakan method POST untuk menggantikan PUT dan DELETE.
- * 
+ *
  *   Pembahasan lebih lanjut akan ada di modul Express ya
- *  
+ *
  */
