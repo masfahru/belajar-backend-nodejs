@@ -24,15 +24,6 @@ const server = http.createServer((req, res) => {
   // ambil path url dari request
   url = req.url;
 
-  // ada baiknya cek ada tidaknya url
-  if (!url) {
-    dataResponse = {
-      data: "Unknown URL",
-    };
-    res.end(JSON.stringify(dataResponse));
-    return;
-  }
-
   /**
    * Routing berarti memberi respons kepada client tergantung pada url
    */
