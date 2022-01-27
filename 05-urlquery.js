@@ -31,7 +31,7 @@ const http = require("http");
 // modul url untuk mengekstract query pada url
 const url = require("url");
 
-// modul querystring untuk membuat object dari query
+// modul querystring untuk membuat object dari query yang di url
 const querystring = require("querystring");
 
 const server = http.createServer((req, res) => {
