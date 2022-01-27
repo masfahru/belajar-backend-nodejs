@@ -28,15 +28,6 @@ const server = http.createServer((req, res) => {
   // ambil method, jika tidak ada isi dengan get
   method = req.method ?? "get";
 
-  // ada baiknya cek ada tidaknya url
-  if (!url) {
-    dataResponse = {
-      data: "Unknown URL",
-    };
-    res.end(JSON.stringify(dataResponse));
-    return;
-  }
-
   /**
    * Routing berarti memberi respons kepada client tergantung pada url
    */
