@@ -51,11 +51,11 @@ const server = http.createServer((req, res) => {
   /**
    * Inisiasi variabel yang akan dipakai
    *
-   * urlReq berisi path url di request
-   * methodReq berisi jenis method pada request, nilai defaultnya get
-   * chunkArr akan diisi dengan chunks dari request Body
-   * dataRequest berisi hasil konversi chunkArr ke data asal
-   * dataResponse berisi object dari request Body
+   * urlReq berupa string berisi path url di request
+   * methodReq berupa string berisi jenis method pada request
+   * chunkArr berupa array yang akan diisi dengan chunks dari request
+   * dataRequest berupa string berisi hasil konversi chunkArr ke data asal
+   * dataResponse berupa object dari request body yang akan dikirim ke klien
    *
    * */
   let urlReq, methodReq, dataRequest;
