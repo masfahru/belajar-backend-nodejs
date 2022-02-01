@@ -76,7 +76,7 @@ const server = http.createServer((req, res) => {
         dataResponse.data = requestObj;
       }
 
-      // tampulkan dataResponse pada console.log
+      // tampilkan dataResponse pada console.log
       console.log(JSON.stringify(dataResponse));
 
       // [TASK]: Uncomment secara bergantian baris res.end()
@@ -86,7 +86,7 @@ const server = http.createServer((req, res) => {
 
     // [TASK]: Uncomment secara bergantian baris res.end()
     // untuk mengetahui efek dari event req.on
-    return res.end(JSON.stringify(dataResponse));
+    // return res.end(JSON.stringify(dataResponse));
   }
 });
 
@@ -101,8 +101,9 @@ server.listen(3000);
  *    Pada contoh di atas:
  *      req.on("end") hanya akan menjalankan fungsi ketika data request selesai diterima
  *
- *    Ketika res.end ditulis diluar req.on("end") maka res.end akan dijalankan segera
+ *    Ketika res.end ditulis DILUAR req.on("end") maka res.end akan dijalankan secara langsung tanpa menunggu data dari klien
  *
- *    Ketika res.end ditulis didalam req.on("end") maka res.end akan dijalankan ketika data selesai diterima server
+ *    Ketika res.end ditulis DIDALAM req.on("end") maka res.end akan dijalankan ketika data dari klien selesai diterima server
  *
+ *    Memiliki pengetahuan tentang penempatkan kode agar dijalankan sesuai dengan "event" sangat membantu dalam pemrograman Nodejs
  */
