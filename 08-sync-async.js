@@ -100,6 +100,7 @@ const server = http.createServer((req, res) => {
       // fs.writeFileSync("request.txt", dataObj)
       // console.log('file disimpan')
 
+      // akhiri timer dan munculkan selisih waktu di console
       console.timeEnd("Timer");
       return res.end(dataObj);
     });
