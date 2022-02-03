@@ -1,0 +1,12 @@
+{
+  "name": "01-intro",
+  "version": "1.0.0",
+  "description": "NPM merupakan alat untuk membuat project dan menginstall modul javascript yang telah dibuat oleh komunitas",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Imam Fahrur Rofi",
+  "license": "ISC"
+}
