@@ -51,3 +51,7 @@ Kami sudah menyalin kode yang dibutuhkan ke file index.js, silahkan cek ya
 ## npm run start
 
 Kita jalankan server yang telah dibuat di index.js dengan menjalankan perintah `npm run start`.
+
+## Postman
+
+Buka postman, kirim request ke endpoint localhost:3000/login dengan method POST

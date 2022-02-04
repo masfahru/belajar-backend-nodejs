@@ -1,0 +1,15 @@
+{
+  "name": "02-packages",
+  "version": "1.0.0",
+  "description": "Nodejs Package merupakan modul yang memiliki fungsi tertentu yang bisa kita install dan gunakan dalam project Nodejs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
