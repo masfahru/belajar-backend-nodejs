@@ -26,6 +26,8 @@ const server = http.createServer((req, res) => {
     header: req.headers,
   };
 
+  // console.log(data);
+
   // Set response header berupa json
   res.setHeader("Content-Type", "application/json");
 

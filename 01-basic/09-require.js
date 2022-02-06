@@ -10,6 +10,7 @@ const http = require("http");
 
 // import module require-module
 const reqHandler = require("./09-require-module");
+const { handler } = require("./09-require-module");
 
 // buat server dengan reqHandler
 const server = http.createServer(reqHandler);

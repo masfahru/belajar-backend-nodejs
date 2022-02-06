@@ -7,7 +7,7 @@
  */
 
 /**
- *  Data dari form dikirim ke server melalui request body
+ *  Data dari formulir HTML dikirim ke server melalui request body
  *
  *  Semisal kita hendak membuat akun atau login ke suatu website,
  *  biasanya kita diminta untuk mengisi formulir dengan banyak kolom.
@@ -135,7 +135,7 @@ const server = http.createServer((req, res) => {
    *  Notice !!!!!
    *
    *  Lab ini bertujuan untuk memberi informasi mengenai bagaimana framework backend bekerja
-   *  Semua hal di atas akan disederhanakan dan dipermudah oleh framework backend seperti ExpressJS
+   *  Semua hal di atas akan disederhanakan dan dipermudah oleh framework backend seperti ExpressJS, HapiJS, dan NestJS
    *
    */
 });

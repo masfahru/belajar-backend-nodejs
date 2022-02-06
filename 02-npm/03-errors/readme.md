@@ -70,3 +70,40 @@ const server = http.createServer((req, res) => {
 });
 ```
 
+## Debugging
+
+Debugging merupakan proses menemukan masalah pada kode yang ditulis. Debugging dapat dilakukan dengan cara menggunakan tools seperti Visual Studio Code, Chrome Dev Tools, dan lainnya.
+
+Pada pemrograman server, kita bisa menggunakan console.log untuk debugging dengan menampilkan data yang dibutuhkan. Contoh pada file 01-basic/07-eventdriven.js bisa diubah menjadi seperti berikut:
+
+```javascript
+const server = http.createServer((req, res) => {
+  let urlReq, methodReq, dataRequest;
+  const chunkArr = [];
+  const dataResponse = {};
+  urlReq = req.url;
+  methodReq = req.method ?? "get";
+  req.on("data", (chunk) => {
+    chunkArr.push(chunk);
+  });
+
+  req.on("end", () => {
+    if (chunkArr.length !== 0) {
+      dataRequest = Buffer.concat(chunkArr).toString();
+      console.log(dataRequest);
+      let requestObj = querystring.parse(dataRequest);
+      dataResponse.data = requestObj;
+    }
+
+    // uncomment kode dibawah menampilkan dataResponse
+    // console.log(JSON.stringify(dataResponse));
+    // jika terdapat data berarti kode di bawah ini berhasil
+    // return res.end(JSON.stringify(dataResponse));
+  });
+
+  // uncomment kode dibawah menampilkan dataResponse
+  // console.log(JSON.stringify(dataResponse));
+  // jika tidak ada data yang tampil berarti kode di bawah ini menjadi logical
+  // return res.end(JSON.stringify(dataResponse));
+});
+```

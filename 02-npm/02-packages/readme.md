@@ -28,7 +28,7 @@ Dependency Modules adalah modul yang dibuat oleh developer lain yang bisa diinst
 
 ## Praktikum
 
-Pada praktikum ini, kita akan menyelesaikan salah satu masalah pada Nodejs. Yaitu server yang berhenti karena adanya error.
+Pada praktikum ini, kita akan menyelesaikan salah satu masalah pada Nodejs. Yaitu server yang harus direstart ulang ketika ada perubahan kode.
 
 ### NPM init
 
@@ -38,7 +38,7 @@ Setelah berhasil, akan muncul file bernama `package.json`.
 
 ### NPM install nodemon
 
-Nodemon merupakan dependency module yang berfungsi untuk menjalankan server Nodejs secara otomatis ketika terjadi error.
+Nodemon merupakan dependency module yang berfungsi untuk menjalankan server Nodejs secara otomatis ketika terjadi perubahan pada kode di server.
 
 Cara instalasinya adalah dengan menggunakan command: `npm install nodemon --save-dev`.
 
@@ -183,7 +183,7 @@ dist
 
 Kode di atas adalah ekstensi dan nama folder yang perlu dikecualikan ketika kita membuat project Nodejs.
 
-Adanya node_modules merupakan ciri bahwa kita telah menginstall modul yang dibutuhkan. Jika tidak ada node_modules, maka kita bisa menginstall modul yang dibutuhkan dengan menggunakan command: `npm install`.
+Adanya folder node_modules merupakan ciri bahwa kita telah menginstall modul yang dibutuhkan. Jika tidak ada node_modules, maka kita bisa menginstall modul yang dibutuhkan dengan menggunakan command: `npm install`.
 
 ### package.json
 

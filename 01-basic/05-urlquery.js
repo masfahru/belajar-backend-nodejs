@@ -10,7 +10,7 @@
  *  Pernah ga sih kalian search di Google kemudian urlnya memanjang?
  *
  *  URL dari sekedar https://www.google.com/
- *  Kemudian kita masukkan keyword Indonesia di pencarian Google
+ *  Kemudian kita masukkan keyword Indonesia di kolom pencarian Google
  *  Tetiba URLnya menjadi https://www.google.com/search?q=Indonesia
  *
  *  adanya tanda tanya (?) digunakan untuk memisahkan antara url dengan querynya
@@ -53,6 +53,8 @@ const server = http.createServer((req, res) => {
   // jadikan string urlRequest menjadi object URL
   urlObj = url.parse(urlRequest);
 
+  console.log(urlObj)
+
   // ambil property query dari object URL
   urlQuery = urlObj.query;
 
@@ -63,15 +65,14 @@ const server = http.createServer((req, res) => {
     };
 
     // Kirim data ke klien
-    res.end(JSON.stringify(dataResponse));
-    return;
+    return res.end(JSON.stringify(dataResponse));
   }
 
   // isi dataResponse dengan hasil parsing urlQuery
   dataResponse = querystring.parse(urlQuery);
 
   // Kirim data ke klien
-  res.end(JSON.stringify(dataResponse));
+  return res.end(JSON.stringify(dataResponse));
 
   /**
    *
@@ -81,7 +82,7 @@ const server = http.createServer((req, res) => {
    * localhost:3000
    * localhost:3000/?
    * localhost:3000/?search=BelajarJavascript
-   * localhost:3000/?judul=Belajar+Javascript
+   * localhost:3000/?judul=Belajar+Javascript&materi=Nodejs+dasar
    *
    */
 });

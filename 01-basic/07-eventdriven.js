@@ -1,5 +1,5 @@
 /**
- * Event Driven Execution
+ * Event Driven Code Execution
  *
  * Memahami eksekusi kode berdasarkan adanya event
  *
@@ -11,10 +11,13 @@
  *      res.end()
  *      dan sejenisnya
  *
- *  Kode di atas merupakan bagian dari Event Driven Execution, yakni kode yang dijalankan berdasarkan event
+ *  Kode di atas merupakan bagian dari Event Driven Code Execution
  *  Sebagai contoh:
  *      req.on('data', callback) akan menjalankan fungsi callback selama buffer data
- *      req.on('end', callback) akan menjalankan fungsi callback setelah buffer data berakhir (end)
+ *      
+ *      req.on('end', callback) akan menjalankan fungsi callback setelah buffer data berakhir
+ *        atau seluruh data request telah diterima server
+ *      
  *      res.end(callback) digunakan untuk menjalankan fungsi callback saat mengakhiri response
  *
  *  Dengan adanya event driven code execution memungkinkan kode kita berjalan secara Asynchronous
@@ -45,7 +48,7 @@ const server = http.createServer((req, res) => {
   urlReq = req.url;
   methodReq = req.method ?? "get";
 
-  // kita hanya acc request dengan method POST pada endpoint login
+  // kita hanya menerima request dengan method POST pada endpoint /login
   // jadi selainnya kita kirimi pemberitahuan
   if (urlReq !== "/login" || methodReq.toLowerCase() !== "post") {
     dataResponse.data = "Silahkan akses endpoint /login dengan method post";
@@ -56,6 +59,8 @@ const server = http.createServer((req, res) => {
       // kita tambahkan data chunk ke chunkArr
       chunkArr.push(chunk);
     });
+
+    res.setHeader("Content-Type", "application/json");
 
     // Setelah data request selesai (end) diterima oleh server
     req.on("end", () => {
@@ -86,6 +91,7 @@ const server = http.createServer((req, res) => {
 
     // [TASK]: Uncomment secara bergantian baris res.end()
     // untuk mengetahui efek dari event req.on
+    // console.log(JSON.stringify(dataResponse));
     // return res.end(JSON.stringify(dataResponse));
   }
 });

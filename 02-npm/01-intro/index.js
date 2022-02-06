@@ -15,6 +15,8 @@ const server = http.createServer((req, res) => {
   urlReq = req.url;
   methodReq = req.method ?? "get";
 
+  res.setHeader("Content-Type", "application/json");
+
   // Mulai timer
   console.time("Timer");
 

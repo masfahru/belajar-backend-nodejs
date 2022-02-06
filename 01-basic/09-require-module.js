@@ -2,7 +2,7 @@
  *  Require Module
  *
  *  Kita akan belajar membuat module Nodejs berupa file js yang diexport
- *  sehingga bisa di-require di file server 09-require.js
+ *  sehingga bisa di-import menggunakan require di file server 09-require.js
  */
 
 const querystring = require("querystring");
@@ -18,6 +18,8 @@ const requestHandler = (req, res) => {
 
   urlReq = req.url;
   methodReq = req.method ?? "get";
+
+  res.setHeader("Content-Type", "application/json");
 
   // Mulai timer
   console.time("Timer");
@@ -79,3 +81,4 @@ const requestHandler = (req, res) => {
 
 // Export fungsi requestHandler dengan sintaks module.exports seperti berikut
 module.exports = requestHandler
+module.exports.handler = requestHandler

@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
    * splitData akan berisi hasil pemisahan value authorization
    * dataUser akan berisi kode base64 dari user dan password
    * userPass akan berisi hasil decode base64 to string dari datauser
-   * dataResponse akan berisi data yang akan dikirim ke user
+   * dataResponse akan berisi data yang dikirim ke user
    *
    * */
   let dataHeader,
@@ -47,15 +47,13 @@ const server = http.createServer((req, res) => {
     dataResponse = {
       data: "Undefined Authorization",
     };
-    // kirim ke client
-    res.end(JSON.stringify(dataResponse));
 
-    // return agar behenti menjalankan kode setelah ini
-    return;
+    // kirim ke client dan return agar behenti menjalankan kode setelah ini
+    return res.end(JSON.stringify(dataResponse));
   }
 
   /**
-   *  Format data authorization adalah "{jenis} {Kode}"
+   *  Format data authorization adalah "{jenis token} {Kode Base64}"
    *  contoh dalam kasus ini adalah "Basic dXNlcjEyMzpwYXNzMTIz" yang dipisahkan oleh spasi
    *  kita akan ambil bagian "dXNlcjEyMzpwYXNzMTIz"
    * */
@@ -67,7 +65,7 @@ const server = http.createServer((req, res) => {
   dataUser = splitData[1];
 
   // convert dataUser dari base64 ke string
-  userPass = Buffer.from(dataUser, "base64").toString("utf-8");
+  userPass = Buffer.from(dataUser, "base64").toString();
 
   // buat data respons berisi token dan userPass
   dataResponse = {
@@ -76,7 +74,7 @@ const server = http.createServer((req, res) => {
   };
 
   // Kirim data berupa Json
-  res.end(JSON.stringify(dataResponse));
+  return res.end(JSON.stringify(dataResponse));
 });
 
 // set port server

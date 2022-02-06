@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
   method = req.method ?? "get";
 
   /**
-   * Routing berarti memberi respons kepada client tergantung pada url
+   * Routing berarti memberi respons kepada client tergantung pada url path dan method
    */
 
   // kita buat routing untuk homepage, login, dan 404 not found
@@ -44,11 +44,11 @@ const server = http.createServer((req, res) => {
     // hanya bisa diakses menggunakan method post
     if (method.toLowerCase() === "post") {
       dataResponse = {
-        data: "Ini adalah halaman Login dengan method POST",
+        data: "Request berhasil di halaman login menggunakan method POST",
       };
     } else {
       dataResponse = {
-        data: "Tidak bisa selain method POST di halaman Login",
+        data: "Tidak bisa melakukan request selain method POST di halaman Login",
       };
     }
   } else {
@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
   }
 
   // Kirim data berupa Json
-  res.end(JSON.stringify(dataResponse));
+  return res.end(JSON.stringify(dataResponse));
 
   /**
    *

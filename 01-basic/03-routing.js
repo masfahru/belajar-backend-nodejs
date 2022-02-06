@@ -40,6 +40,11 @@ const server = http.createServer((req, res) => {
     dataResponse = {
       data: "Ini adalah halaman Login",
     };
+  } else if (url.toLowerCase() === "/register") {
+    // routing register
+    dataResponse = {
+      data: "Ini adalah halaman Register",
+    };
   } else {
     // Selain url diatas dianggap 404 not found
     dataResponse = {
@@ -48,7 +53,7 @@ const server = http.createServer((req, res) => {
   }
 
   // Kirim data berupa Json
-  res.end(JSON.stringify(dataResponse));
+  return res.end(JSON.stringify(dataResponse));
 
   /**
    *
