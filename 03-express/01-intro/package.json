@@ -1,0 +1,18 @@
+{
+  "name": "belajar-install-express",
+  "version": "1.0.0",
+  "description": "Project belajar instalasi ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "start-server": "node index.js"
+  },
+  "author": "Imam Fahrur Rofi",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
