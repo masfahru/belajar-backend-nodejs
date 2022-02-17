@@ -1,17 +1,32 @@
 # Express: Apa dan Kenapa ?
 
-Apa itu Express dan kenapa kita menggunakannya dalam pemrograman server ?
+Apa itu Express ? Kenapa kita menggunakannya dalam pemrograman server ?
 
-Setelah melalui beberapa lab sederhana sebelumnya, kita tahu bahwa logika untuk membuat server cukup kompleks.
+Setelah melalui beberapa lab sederhana sebelumnya, kita tahu bahwa logika untuk membuat server cukup kompleks. Kita harus menuliskan kode untuk mengatur route, mengatur method request, mengatur middleware, dan mengatur response.
 
-Sebagai contoh untuk mengambil data formulir dari body request, kita perlu melakukan req on data, buffer, dan req on end. Itu pun jika data berupa string, lantas bagaimana jika data berupa media yang berbentuk file, seperti gambar, video, atau audio ? tentu cukup rumit jika kita membuat kodenya sendiri
+Sebagai contoh untuk mengambil data formulir dari body request, kita perlu melakukan req on data, buffer, dan req on end. Itu pun jika data berupa string, lantas bagaimana jika data berupa media yang berbentuk file, seperti gambar, video, atau audio ? tentu cukup rumit jika kita membuat kodenya sendiri.
 
 Kita tentu saja tidak ingin dirumitkan oleh hal yang teknikal seperti di atas, kita berharap bisa lebih berfokus pada logika pemrograman. Agar tidak terlalu rumit, kita bisa menggunakan framework yang sudah ada.
 
-Framework pada dasarnya adalah kumpulan dari library (perpustakaan fungsi) dan gabungan beberapa tools (alat-alat) pendukungnya.
+Framework pada dasarnya adalah kumpulan dari library (perpustakaan) fungsi-fungsi yang berguna untuk suatu tujuan tertentu dan terdapat juga beberapa tools (alat-alat) pendukungnya.
 
-Express adalah sebuah framework untuk pemrograman server. Banyak fitur dari Express yang akan membantu kita dalam membuat server.
+Express adalah sebuah framework Nodejs yang berfungsi untuk mengatur route, method request, middleware, dan response. Dengan menggunakan Express, kita dapat menuliskan kode yang lebih mudah dan lebih rapi.
 
+## Fitur-fitur Express
+
+Beberapa fitur-fitur yang dapat kita gunakan pada Express:
+
+1.  Menerima Request
+2.  Mengirim Response
+3.  Routing
+4.  Validasi Data Request
+5.  Manajemen Data (Seperti menghubungkan database, menyimpan session, menyimpan file, berinteraksi dengan web api lain, dll).
+
+Hampir semua hal di atas pernah kita coba lakukan dengan menulis kode buatas sendiri di labs sebelumnya, namun membutuhkan banyak kode sehingga terasa kurang efisien untuk mengatur request, response, routing, dan validasi data request.
+
+Pada Express, kita menggunakan istilah _middleware_ karena kode yang ditulis merupakan kode pemrosesan data dari data request menjadi data response.
+
+Mari kita buat project baru dengan Express.
 ## Buat Project Baru
 
 Kita buat project baru dengan menggunakan command berikut:
@@ -116,7 +131,7 @@ app.get('/', (req, res) => {
 app.listen(port);
 ```
 
-Dengan menggunakan Express, kita tidak perlu lagi mengimport module http.
+Dengan menggunakan Express, kita tidak perlu lagi mengimport module http dikarenakan Express merupakan framework yang menggunakan `http` sebagai dasarnya.
 
 ## Jalankan Server
 
