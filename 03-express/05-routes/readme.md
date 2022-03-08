@@ -135,7 +135,7 @@ Skenario route `/user`:
 3. Tambahkan method GET untuk menampilkan semua data user
 4. Tambahkan method GET `/user/:id` untuk menampilkan data user berdasarkan ID
 5. Tambahkan method POST untuk menambahkan data user
-6. Tambahkan method DELETE untuk menghapus data user
+6. Tambahkan method DELETE `/user/:id` untuk menghapus data user
 
 Karena kita belum menggunakan database, maka ketika server direstart, data user dummy akan kembali ke awal.
 
@@ -185,13 +185,7 @@ const users = [
 const express = require("express");
 const router = express.Router();
 
-// set header agar response yang dikirim dalam bentuk json
-router.use("/user", (req, res, next) => {
-  res.header("content-type", "application/json");
-  next();
-});
-
-// kirimkan object users
+// Route GET `/user`
 router.get("/user", (req, res, next) => {
   res.send({ users });
 });
@@ -203,6 +197,7 @@ Modifikasi `index.js` untuk menambahkan route method GET `/user`:
 
 ```javascript
 require("dotenv").config();
+const bodyParser = require("body-parser");
 const express = require("express");
 
 // import router
@@ -212,11 +207,15 @@ const userRouter = require("./routers/user");
 // instansiasi app
 const app = express();
 
-// tambahkan router index ke app
-app.use("/", indexRouter);
-
-// tambahkan router user ke app
-app.use("/user", userRouter);
+app.use(
+  bodyParser.json(),
+  (req, res, next) => {
+    res.header("content-type", "application/json");
+    next();
+  },
+  indexRouter,
+  userRouter
+);
 
 // tentukan port sesuai dengan .env
 app.listen(process.env.PORT, () => {
@@ -225,3 +224,250 @@ app.listen(process.env.PORT, () => {
 ```
 
 Buka Postman, masukkan URL `http://localhost:3000/user` dan klik tombol `GET`, maka akan muncul object data users.
+
+### Method GET `/user/:id`
+
+Method GET `/user/:id` akan menampilkan data user berdasarkan ID yang dikirimkan. `:id` dalam route ini disebut dengan parameter, pemberian nama parameter mengikuti camelCase.
+
+Tambaahkan method GET `/user/:id` ke file `user.js`:
+
+```javascript
+const users = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "John@Doe.com",
+  },
+  {
+    id: 2,
+    name: "Jane Doe",
+    email: "Jane@Doe.com",
+  },
+];
+
+const express = require("express");
+const router = express.Router();
+
+// Route GET `/user`
+router.get("/user", (req, res, next) => {
+  res.send({ users });
+});
+
+// Route GET `/user/:id`
+router.get("/user/:id", (req, res, next) => {
+  // dapatkan id dari parameter
+  const id = req.params.id;
+
+  // lakukan perulangan untuk mencari user.id yang sama dengan id yang dikirimkan
+  // jika ditemukan maka kirim data user yang ditemukan
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.id === parseInt(id)) {
+      res.send(user);
+      return next("route");
+    }
+  }
+
+  // jika tidak ditemukan maka kirim pesan error
+  res.send({
+    error: "User not found",
+  });
+});
+
+module.exports = router;
+```
+
+### Method POST untuk menambahkan data user
+
+Method POST pada route `/user` akan menambahkan data user baru ke dalam array `users`, kemudian kirim data semua user ke client.
+
+```javascript
+const users = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "John@Doe.com",
+  },
+  {
+    id: 2,
+    name: "Jane Doe",
+    email: "Jane@Doe.com",
+  },
+];
+
+const bodyParser = require("body-parser");
+const express = require("express");
+const router = express.Router();
+
+// Route GET `/user`
+router.get("/user", (req, res, next) => {
+  res.send({ users });
+});
+
+// Route GET `/user/:id`
+router.get("/user/:id", (req, res, next) => {
+  // dapatkan id dari parameter
+  const id = req.params.id;
+
+  // lakukan perulangan untuk mencari user.id yang sama dengan id yang dikirimkan
+  // jika ditemukan maka kirim data user yang ditemukan
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.id === parseInt(id)) {
+      res.send(user);
+      return next("route");
+    }
+  }
+
+  // jika tidak ditemukan maka kirim pesan error
+  res.send({
+    error: "User not found",
+  });
+});
+
+// Route POST `/user`
+router.post(
+  "/user",
+  bodyParser.urlencoded({ extended: true }), // middleware untuk mengambil data request body
+  (req, res, next) => {
+    // dapatkan data dari body request
+    const { name, email } = req.body;
+
+    // jika data name dan email kosong
+    if (!name || !email) {
+      res.send({
+        error: "Membutuhkan name dan email",
+      });
+      return next("route");
+    }
+
+    // buat object user baru
+    const user = {
+      id: users.length + 1,
+      name,
+      email,
+    };
+
+    // tambahkan user baru ke dalam array `users`
+    users.push(user);
+
+    // kirim data semua user ke client
+    res.send({ users });
+  }
+);
+
+module.exports = router;
+```
+
+Coba untuk menambahkan data user baru dengan mengirimkan data dengan method POST `/user`.
+
+Catatan: Karena kita menggunakan variabel `users` untuk menyimpan data user, maka `users` akan direset setiap kali server direstart.
+
+### Method DELETE untuk menghapus data user
+
+Skenario mirip dengan mencari user dengan ID, bedanya kita hapus data yang ditemukan, kemudian kirim data users ke client.
+
+```javascript
+const users = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "John@Doe.com",
+  },
+  {
+    id: 2,
+    name: "Jane Doe",
+    email: "Jane@Doe.com",
+  },
+];
+
+const bodyParser = require("body-parser");
+const express = require("express");
+const router = express.Router();
+
+// Route GET `/user`
+router.get("/user", (req, res, next) => {
+  res.send({ users });
+});
+
+// Route GET `/user/:id`
+router.get("/user/:id", (req, res, next) => {
+  // dapatkan id dari parameter
+  const id = req.params.id;
+
+  // lakukan perulangan untuk mencari user.id yang sama dengan id yang dikirimkan
+  // jika ditemukan maka kirim data user yang ditemukan
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.id === parseInt(id)) {
+      res.send(user);
+      return next("route");
+    }
+  }
+
+  // jika tidak ditemukan maka kirim pesan error
+  res.send({
+    error: "User not found",
+  });
+});
+
+// Route POST `/user`
+router.post(
+  "/user",
+  bodyParser.urlencoded({ extended: true }), // middleware untuk mengambil data request body
+  (req, res, next) => {
+    // dapatkan data dari body request
+    const { name, email } = req.body;
+
+    // jika data name dan email kosong
+    if (!name || !email) {
+      res.send({
+        error: "Membutuhkan name dan email",
+      });
+      return next("route");
+    }
+
+    // buat object user baru
+    const user = {
+      id: users.length + 1,
+      name,
+      email,
+    };
+
+    // tambahkan user baru ke dalam array `users`
+    users.push(user);
+
+    // kirim data semua user ke client
+    res.send({ users });
+  }
+);
+
+// Route DELETE `/user/:id`
+router.delete(
+  "/user/:id",
+  (req, res, next) => {
+    // dapatkan id dari parameter
+    const id = req.params.id;
+
+    // lakukan perulangan untuk mencari user.id yang sama dengan id yang dikirimkan
+    // jika ditemukan maka hapus data user yang ditemukan
+    for (let i = 0; i < users.length; i++) {
+      let user = users[i];
+      if (user.id === parseInt(id)) {
+        users.splice(i, 1);
+        res.send({ users });
+        return next("route");
+      }
+    }
+
+    // jika tidak ditemukan maka kirim pesan error
+    res.send({
+      error: "User not found",
+    });
+  }
+);
+
+module.exports = router;
+```
+
+Coba hapus data user dengan id 1 dengan mengirimkan data dengan method DELETE `/user/1`.

@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
  * 3. Kirim data request body ke User
  * 
  * */
-router.post('/', bodyParser.json(), bodyParser.urlencoded({ extended: true }), (req, res, next) => {
+router.post('/', bodyParser.urlencoded({ extended: true }), (req, res, next) => {
   res.send(req.body);
 });
 

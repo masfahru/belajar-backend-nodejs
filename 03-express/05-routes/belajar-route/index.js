@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 const express = require("express");
 
 // import router
@@ -8,11 +9,15 @@ const userRouter = require("./routers/user");
 // instansiasi app
 const app = express();
 
-// tambahkan router index ke app
-app.use("/", indexRouter);
-
-// tambahkan router user ke app
-app.use("/user", userRouter);
+app.use(
+  bodyParser.json(),
+  (req, res, next) => {
+    res.header("content-type", "application/json");
+    next();
+  },
+  indexRouter,
+  userRouter
+);
 
 // tentukan port sesuai dengan .env
 app.listen(process.env.PORT, () => {
