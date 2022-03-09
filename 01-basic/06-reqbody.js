@@ -7,7 +7,8 @@
  */
 
 /**
- *  Data dari formulir HTML dikirim ke server melalui request body
+ *  Request body merupakan data yang dikirimkan oleh client. Jika kita pernah mengisi formulir pada sebuah aplikasi atau mengupload data,
+ *  formulir tersebut dikirim ke server dalam request body.
  *
  *  Semisal kita hendak membuat akun atau login ke suatu website,
  *  biasanya kita diminta untuk mengisi formulir dengan banyak kolom.

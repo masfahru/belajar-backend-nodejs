@@ -199,11 +199,11 @@ Silahkan cek package.json. Di dalamnya banyak informasi yang bisa kita ketahui t
 
 Selanjutnya kita modifikasi properti scripts yang ada di package.json. Tambahkan properti `start` dengan command: `nodemon index.js`. Kurang lebih properti scripts menjadi seperti berikut ini:
 
-    ```javascript
-    "scripts": {
-        "start": "nodemon index.js"
-    }
-    ```
+```javascript
+"scripts": {
+    "start": "nodemon index.js"
+}
+```
 
 ### index.js
 

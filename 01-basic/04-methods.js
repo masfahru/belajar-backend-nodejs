@@ -96,8 +96,6 @@ server.listen(3000);
  *
  *
  *      Adanya perbedaan method ini agar kode memiliki makna yang sesuai (semantik),
- *      Kita juga bisa hanya gunakan method POST untuk menggantikan PUT dan DELETE.
- *
- *   Pembahasan lebih lanjut akan ada di modul Express ya
+ *      Method PUT bisa digantikan oleh method POST.
  *
  */

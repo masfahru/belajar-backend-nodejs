@@ -8,7 +8,7 @@ Terdapat 3 jenis error yang dapat terjadi:
 2. Runtime Error
 3. Logical Error
 
-Pejelasannya adalah sebagai berikut:
+Penjelasannya adalah sebagai berikut:
 
 ## Syntax Error
 
