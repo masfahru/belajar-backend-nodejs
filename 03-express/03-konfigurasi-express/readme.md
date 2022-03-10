@@ -144,4 +144,4 @@ Setelah kita mempelajari tentang environment configuration dan cara kerjanya, be
 1. Matikan server yang sedang berjalan
 2. Hapus folder `node_modules`
 
-Untuk menjalankan server kembali, kita perlu menjalankan command `npm install` lagi. Tenang saja hal ini tidak akan mendownload dependensi lagi melainkan hanya mengekstrak dari dependensi sebelumnya yang telah didownload oleh Nodej.
+Untuk menjalankan server kembali, kita perlu menjalankan command `npm install` lagi. Tenang saja hal ini tidak akan mendownload dependensi lagi melainkan hanya mengekstrak dari dependensi sebelumnya yang telah didownload oleh Nodejs.
