@@ -27,9 +27,10 @@ Ada beberapa langkah untuk membuat sebuah server Express yang seharusnya telah k
 require("dotenv").config();
 const express = require("express");
 
+const app = express();
+
 // Routers di sini
 
-const app = express();
 app.listen(process.env.PORT, () => {
   console.log(`Server berjalan di port ${process.env.PORT}`);
 });
