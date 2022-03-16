@@ -1,4 +1,4 @@
-# Routers
+# routes
 
 Pada tutorial sebelumnya kita belajar tentang middleware, namun hanya menggunakan satu route yakni index `/`.
 
@@ -6,7 +6,7 @@ Kita memang bisa menulis route dan middleware-nya di dalam `index.js`, namun car
 
 - Sebuah route bisa memiliki beberapa method, seperti `GET`, `POST`, `PUT`, `DELETE`, dan lain-lain. Setiap method bisa memiliki beberapa middleware. Tentu saja kodenya akan panjang jika kita tulis semua di dalam satu file `index.js`.
 - Sulit untuk berkolaborasi, semisal Anda ditugaskan untuk mengatur route `/login` dan teman Anda ditugaskan untuk mengatur route `/register`. Jika kita menulis semua route di dalam satu file `index.js`, maka akan terjadi konflik pada version control karena file index.js Anda yang berbeda dengan file index.js teman Anda.
-- Dengan alasan semua kode routers berada di dalam satu file, maka sulit untuk melakukan unit testing dan re-use code.
+- Dengan alasan semua kode routes berada di dalam satu file, maka sulit untuk melakukan unit testing dan re-use code.
 
 Jika kita ibaratkan index.js sebagai `main-app` atau aplikasi inti, maka solusi dari permasalaan di atas adalah dengan membuat `sub-app` atau `mini-app`, yakni aplikasi express yang digunakan untuk setiap route.
 
@@ -29,7 +29,7 @@ const express = require("express");
 
 const app = express();
 
-// Routers di sini
+// routes di sini
 
 app.listen(process.env.PORT, () => {
   console.log(`Server berjalan di port ${process.env.PORT}`);
@@ -40,11 +40,11 @@ app.listen(process.env.PORT, () => {
 
 ## Buat Router
 
-Route kali ini tidak akan di tulis di _main-app_ atau `index.js` melainkan akan ditulis di dalam sebuah folder bernama `routers`.
+Route kali ini tidak akan di tulis di _main-app_ atau `index.js` melainkan akan ditulis di dalam sebuah folder bernama `routes`.
 
-Buatlah folder bernama `routers` di dalam project.
+Buatlah folder bernama `routes` di dalam project.
 
-Kita akan membuat route untuk index atau `/`, buat file bernama `index.js` di dalam folder `routers`. Isi dengan kode berikut:
+Kita akan membuat route untuk index atau `/`, buat file bernama `index.js` di dalam folder `routes`. Isi dengan kode berikut:
 
 ```javascript
 // module express wajib ada
@@ -111,7 +111,7 @@ require("dotenv").config();
 const express = require("express");
 
 // import router index
-const indexRouter = require("./routers/index");
+const indexRouter = require("./routes/index");
 
 // instansiasi app
 const app = express();
@@ -131,7 +131,7 @@ Jalankan server dengan command: `npm run dev`, karena kita menggunakan nodemon m
 
 Skenario route `/user`:
 
-1. Buat file `user.js` di dalam folder `routers`
+1. Buat file `user.js` di dalam folder `routes`
 2. Di dalam file `user.js`, buat array dummy beberapa object `user`
 3. Tambahkan method GET untuk menampilkan semua data user
 4. Tambahkan method GET `/user/:id` untuk menampilkan data user berdasarkan ID
@@ -142,7 +142,7 @@ Karena kita belum menggunakan database, maka ketika server direstart, data user 
 
 ### File `user.js`
 
-Buat file bernama `user.js` di dalam folder `routers`
+Buat file bernama `user.js` di dalam folder `routes`
 
 ### Dummy Data User
 
@@ -202,8 +202,8 @@ const bodyParser = require("body-parser");
 const express = require("express");
 
 // import router
-const indexRouter = require("./routers/index");
-const userRouter = require("./routers/user");
+const indexRouter = require("./routes/index");
+const userRouter = require("./routes/user");
 
 // instansiasi app
 const app = express();
