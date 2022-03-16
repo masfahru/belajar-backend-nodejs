@@ -418,3 +418,7 @@ Gunakan method POST untuk mengirimkan file. Sesuaikan body masing-masing request
 1. Endpoint: `localhost:3000/single-upload`, body: key `image`, tipe data file, value: file yang akan diupload.
 2. Endpoint: `localhost:3000/multi-upload`, body: key `images`, tipe data file, value: file yang akan diupload, buat beberapa key `images` dengan tipe data file.
 3. Endpoint: `localhost:3000/single-upload-with-data`, body: key `name` => value `nama-kalian`, key `email` => value `email-kalian`, dan key `image` dengan tipe data file => value: file yang akan diupload.
+
+## Eksplorasi
+
+Selain penentuan lokasi penyimpanan file dan penamaan file di server, terdapat beberapa pengaturan lain pada multer, seperti memfilter jenis file yang diupload, ukuran maksimal file yang diupload, dan lain-lain.
