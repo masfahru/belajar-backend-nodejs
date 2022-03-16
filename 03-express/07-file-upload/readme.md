@@ -59,6 +59,8 @@ UPLOAD_DIR=uploads
 
 Buatlah file `.gitignore` dengan isi yang ada pada file ini: [Node.gitignore](https://github.com/github/gitignore/blob/main/Node.gitignore)
 
+Setelahnya tambahkan juga `public\uploads` ke dalam file `.gitignore` agar file yang kita upload ketika testing tidak ikut masuk ke dalam repository.
+
 ## Modifikasi package.json
 
 Modifikasi script `package.json` bagian `scripts` hingga menjadi:
@@ -187,16 +189,15 @@ Selanjutnya buat middleware untuk menangani upload sebuah file berisi data lain 
 
 ```javascript
 const uploadSingleImageWithData = (req, res, next) => {
-  // name dan email merupakan key yang ada di request body
-  const { name, email } = req.body;
-  // dengan kode destructuring request body di atas
-  // name dan email ini bisa diakses oleh middleware selanjutnya
-
   // upload file dengan key `image`
   const upload = multerInstance.single("image");
 
   // Error Handling
   upload(req, res, (err) => {
+    // name dan email merupakan key yang ada di request body
+    const { name, email } = req.body;
+    // dengan kode destructuring request body di atas
+    // name dan email ini bisa diakses oleh middleware selanjutnya
     // tampikan name dan email di console.log
     console.log(name, email);
     if (err) {
@@ -264,16 +265,15 @@ const uploadMultiImage = (req, res, next) => {
 };
 
 const uploadSingleImageWithData = (req, res, next) => {
-  // name dan email merupakan key yang ada di request body
-  const { name, email } = req.body;
-  // dengan kode destructuring request body di atas
-  // name dan email ini bisa diakses oleh middleware selanjutnya
-
   // upload file dengan key `image`
   const upload = multerInstance.single("image");
 
   // Error Handling
   upload(req, res, (err) => {
+    // name dan email merupakan key yang ada di request body
+    const { name, email } = req.body;
+    // dengan kode destructuring request body di atas
+    // name dan email ini bisa diakses oleh middleware selanjutnya
     // tampikan name dan email di console.log
     console.log(name, email);
     if (err) {
@@ -408,6 +408,12 @@ app.listen(process.env.PORT, () => {
 ## Jalankan Project
 
 Jalankan project tersebut dengan command: `npm run dev`
+
+## Error yang mungkin terjadi
+
+Error yang mungkin terjadi ketika ditesting adalah:
+
+- Unexpected Field, hal ini dikarenakan key yang dimasukkan pada request dari client tidak sesuai.
 
 ## Testing Upload
 

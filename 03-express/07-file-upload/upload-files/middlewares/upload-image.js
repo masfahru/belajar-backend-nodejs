@@ -42,16 +42,16 @@ const uploadMultiImage = (req, res, next) => {
 };
 
 const uploadSingleImageWithData = (req, res, next) => {
-  // name dan email merupakan key yang ada di request body
-  const { name, email } = req.body;
-  // dengan kode destructuring request body di atas
-  // name dan email ini bisa diakses oleh middleware selanjutnya
-
   // upload file dengan key `image`
   const upload = multerInstance.single("image");
 
   // Error Handling
   upload(req, res, (err) => {
+    // name dan email merupakan key yang ada di request body
+    const { name, email } = req.body;
+    // dengan kode destructuring request body di atas
+    // name dan email ini bisa diakses oleh middleware selanjutnya
+
     // tampikan name dan email di console.log
     console.log(name, email);
     if (err) {
