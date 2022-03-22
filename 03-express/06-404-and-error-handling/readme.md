@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
 });
 ```
 
-Penempatan kedua kode di atas berada `di index.js`.
+Penempatan kedua kode di atas berada di `index.js`.
 
 ## 404 Not Found
 
