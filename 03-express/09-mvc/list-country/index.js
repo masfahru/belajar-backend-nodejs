@@ -25,7 +25,6 @@ app.use((req, res, next) => {
 
 // Error Handler Middleware
 app.use((err, req, res, next) => {
-  console.log(err.stack);
   res.status(500).send({
     message: err.message,
   });
