@@ -318,9 +318,14 @@ const deleteCountryById = (req, res, next) => {
 // buat middleware untuk menambahkan data country
 const addCountry = (req, res, next) => {
   // dapatkan url gambar dari middleware upload-image
-  const flagUrl = `${req.protocol}://${req.get("host")}/${
-    process.env.UPLOAD_DIR
-  }/${req.file.filename}`;
+  let flagUrl;
+
+  // jika ada file yang diupload, dapatkan urlnya
+  if(req.file?.filename) {
+    flagUrl = `${req.protocol}://${req.get("host")}/${
+      process.env.UPLOAD_DIR
+    }/${req.file.filename}`;
+  }
   // buat variable untuk menampung data country
   const country = new Country(
     req.body.name,
@@ -347,13 +352,13 @@ const updateCountryById = (req, res, next) => {
   let name, flag, language, continent;
   // tampung data yang akan diupdate dalam bentuk object
   // semisal tidak ada file foto, skip
-  if (req.body.name) name = req.body.name;
-  if (req.file.filename)
+  if (req.body?.name) name = req.body.name;
+  if (req.file?.filename)
     flag = `${req.protocol}://${req.get("host")}/${process.env.UPLOAD_DIR}/${
       req.file.filename
     }`;
-  if (req.body.language) language = req.body.language;
-  if (req.body.continent) continent = req.body.continent;
+  if (req.body?.language) language = req.body.language;
+  if (req.body?.continent) continent = req.body.continent;
 
   // buat object Country
   let data = new Country(name, flag, language, continent);
@@ -388,7 +393,7 @@ const express = require("express");
 const router = express.Router();
 
 // import middleware
-const { uploadAnImage, uploadImages } = require("../middlewares/upload-image");
+const { uploadAnImage } = require("../middlewares/upload-image");
 const countryMiddleware = require("../middlewares/country");
 
 // Route menambahkan data pada endndpoint /
